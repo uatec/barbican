@@ -41,6 +41,7 @@ namespace barbican
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseExceptionDemystifier();
             }
 
             app.UseAuthentication();
