@@ -18,7 +18,7 @@ namespace barbican
 
         public async Task InvokeAsync(HttpContext context)
         {
-            if (context.Request.Path.StartsWithSegments("proxy") )
+            if (context.Request.Path.StartsWithSegments("/proxy") )
             {
                 await this.next(context);
                 return;
@@ -72,6 +72,8 @@ namespace barbican
         {
             string[] pathParts = path.Value.Split('/');
 
+            if ( pathParts.Length < 3 ) return null;
+            
             return new Uri($"{pathParts[1]}://{pathParts[2]}/{string.Join('/', pathParts.Skip(3))}");
         }
     }
