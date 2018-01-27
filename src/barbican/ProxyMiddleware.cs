@@ -15,8 +15,6 @@ namespace barbican
 
         public async Task InvokeAsync(HttpContext context)
         {
-            try
-            {
             Uri destUri = mapUri(context.Request.PathBase, context.Request.Path, context.Request.QueryString);
             HttpRequestMessage request = new HttpRequestMessage(new HttpMethod(context.Request.Method), destUri);
 
@@ -52,12 +50,6 @@ namespace barbican
             context.Response.Headers.Remove("Transfer-Encoding");
 
             await response.Content.CopyToAsync(context.Response.Body);
-            
-            }
-            catch ( Exception ex ) 
-            {
-                throw;
-            }
         }
 
         private Uri mapUri(PathString pathBase, PathString path, QueryString queryString)
