@@ -3,9 +3,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-  <ItemGroup>
+    <PackageReference Include="codeessentials.AspNetCore.Diagnostics.Demystifier" Version="0.1.16" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.0.1" />
   </ItemGroup>
