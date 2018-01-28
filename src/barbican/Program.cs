@@ -20,6 +20,9 @@ namespace barbican
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .ConfigureAppConfiguration((context, builder) => {
+                    builder.AddYamlFile("config.yml", optional: true);
+                })
                 .Build();
     }
 }
