@@ -1,4 +1,4 @@
-namespace barbican.Authentication
+namespace barbican.Authentication.AzureAd
 {
     public class AzureAdOptions
     {

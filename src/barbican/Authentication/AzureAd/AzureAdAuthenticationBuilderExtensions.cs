@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace barbican.Authentication
+namespace barbican.Authentication.AzureAd
 {
     public static class AzureAdAuthenticationBuilderExtensions
     {        

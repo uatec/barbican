@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 
-namespace barbican.Authentication
+namespace barbican.Authentication.AzureAd
 {
     public class ChallengeMiddleware
     {

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using barbican.Authentication;
+using barbican.Authentication.AzureAd;
+using barbican.Authentication.BasicAuth;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -25,13 +28,17 @@ namespace barbican
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(sharedOptions =>
+            var authConfig = Configuration.GetSection("Authentication");
+            switch ( authConfig["Provider"] )
             {
-                sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-            })
-            .AddAzureAd(options => Configuration.Bind("AzureAd", options))
-            .AddCookie() ;
+                case "AzureAd":
+                    services.AddAzureAd(authConfig);
+                    break;
+                case "Basic":
+                default:
+                    services.AddBasicAuthentication(authConfig);
+                    break;
+            }
 
             services.AddMvc();
         }
@@ -45,11 +52,17 @@ namespace barbican
                 app.UseExceptionDemystifier();
             }
 
-            app.UseAuthentication();
-
             app.UseMvc();
-
-            app.UseMiddleware<ChallengeMiddleware>();
+            switch ( Configuration["Authentication:Provider"] )
+            {
+                case "AzureAd":
+                    app.UseAzureAd();
+                    break;
+                case "Basic":
+                default:
+                    app.UseBasicAuthentication();
+                    break;
+            }
 
             app.UseMiddleware<ProxyMiddleware>();
         }
