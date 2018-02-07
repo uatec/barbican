@@ -12,6 +12,7 @@ A secure proxy to allow authorised access to internal services without exposing 
 e.g. 
 ```
 /proxy/https/www.bbc.co.uk/news ==> https://www.bbc.co.uk/news
+/proxy/http/some_api.internal:8080/ ==> http://some_api.internal:8080/
 ```
 
 ## Authentication
