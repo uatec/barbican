@@ -11,7 +11,7 @@ A secure proxy to allow authorised access to internal services without exposing 
 
 e.g. 
 ```
-/proxy/https/www.bbc.co.uk/news ==> http://www.bbc.co.uk/news
+/proxy/https/www.bbc.co.uk/news ==> https://www.bbc.co.uk/news
 ```
 
 ## Authentication
