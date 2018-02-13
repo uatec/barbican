@@ -5,6 +5,10 @@ A secure proxy to allow authorised access to internal services without exposing 
 
 ## Routes
 
+### DNS Routing
+
+Specifying the scheme and hostname/port, barbican will simply resolve these itself to relay the service. This will include localhost and private network addresses like the AWS metadata endpoint, so it is important to be aware when deciding where to host barbican.
+
 ```
 /proxy/<scheme>/<host_and_port>/<path> ==> <scheme>://<host_and_port>/<path>
 ```
